@@ -1,0 +1,23 @@
+Audit Examples 
+
+Input:
+Simply add 42 (hex) and 10 (bin) and you will see the result is 68.
+
+Expected Output:
+Simply add 66 and 2 and you will see the result is 68.
+
+---
+
+Input:
+There is no greater agony than bearing a untold story inside you.
+
+Expected Output:
+There is no greater agony than bearing an untold story inside you.
+
+---
+
+Input:
+Punctuation tests are ... kinda boring ,what do you think ?
+
+Expected Output:
+Punctuation tests are... kinda boring, what do you think?
