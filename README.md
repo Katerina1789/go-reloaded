@@ -44,5 +44,5 @@ Simply add 66 and 2 and you will see the result is 68.
 
 - Go Documentation: https://golang.org/doc/
 - Go File System API: https://pkg.go.dev/os
-- Markdown Guide: https://www.markdownguide.org/basic-syntax/
+- Markdown/HTML Guide: https://www.markdownguide.org/basic-syntax/
 - Finite State Machines – CS Concepts: https://en.wikipedia.org/wiki/Finite-state_machine
