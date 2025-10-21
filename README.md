@@ -10,12 +10,12 @@ This project is part of a collaborative audit framework where students act as bo
 ## Repository Structure
 
 go-reloaded/
-├── audit/             # Audit guide and golden test cases
-│   ├── audit_guide.txt
-│   └── golden_test_set.txt
-├── docs/              # Project analysis and architecture
-│   └── analysis.md
-└── README.md          # Project overview and usage
+>├── audit/             # Audit guide and golden test cases
+>│   ├── audit_guide.txt
+>│   └── golden_test_set.txt
+>├── docs/              # Project analysis and architecture
+>│   └── analysis.md
+>└── README.md          # Project overview and usage
 
 -  Analysis Document: Problem description, rule breakdown, and architectural approach (docs/analysis.md)
 -  Golden Test Set: Functional and custom test cases in natural language (audit/golden_test.txt)
