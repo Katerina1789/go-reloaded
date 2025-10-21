@@ -7,29 +7,15 @@ A text transformation tool written in Go that applies formatting, correction, an
 `go-reloaded` reads a text file, applies a series of transformation rules (e.g., number conversion, capitalization, punctuation correction), and writes the modified output to a new file. It supports both simple and compound rule interactions, making it suitable for nuanced text editing tasks.
 This project is part of a collaborative audit framework where students act as both developers and auditors.
 
-## Workflow Diagram
-
-```mermaid
-flowchart TD
-    A[Start: Read input file] --> B[Parse text line by line]
-    B --> C[Apply transformation rules]
-    C --> D{Rules Detected?}
-    D -- Yes --> E[Apply matching rules]
-    D -- No --> F[Skip to next line]
-    E --> G[Update transformed line]
-    F --> G
-    G --> H[Write to output file]
-    H --> I[End]
-
 ## Repository Structure
 
-graph TD
-    A[go-reloaded] --> B[audit/]
-    A --> C[docs/]
-    A --> D[README.md]
-    B --> E[audit_guide.txt]
-    B --> F[golden_test_set.txt]
-    C --> G[analysis.md]
+go-reloaded/  
+├── audit/             # Audit guide and golden test cases  
+│   ├── audit_guide.txt  
+│   └── golden_test_set.txt  
+├── docs/              # Project analysis and architecture  
+│   └── analysis.md  
+└── README.md          # Project overview and usage  
 
 -  Analysis Document: Problem description, rule breakdown, and architectural approach (docs/analysis.md)
 -  Golden Test Set: Functional and custom test cases in natural language (audit/golden_test.txt)
@@ -59,5 +45,4 @@ Simply add 66 and 2 and you will see the result is 68.
 - Go Documentation: https://golang.org/doc/
 - Go File System API: https://pkg.go.dev/os
 - Markdown/HTML Guide: https://www.markdownguide.org/basic-syntax/
-- Mermaid diagrams: https://github.com/mermaid-js/mermaid
 - Finite State Machines – CS Concepts: https://en.wikipedia.org/wiki/Finite-state_machine
