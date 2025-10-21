@@ -1,4 +1,4 @@
-# go-reloaded – Analysis Document
+# Analysis Document
 
 This document outlines the problem, transformation rules, and architectural decisions for the `go-reloaded` project.
 
