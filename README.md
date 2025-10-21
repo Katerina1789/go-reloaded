@@ -42,7 +42,7 @@ Simply add 66 and 2 and you will see the result is 68.
 
 ## External References
 
-- Go Documentation: https://golang.org/doc/
-- Go File System API: https://pkg.go.dev/os
-- Markdown/HTML Guide: https://www.markdownguide.org/basic-syntax/
-- Finite State Machines – CS Concepts: https://en.wikipedia.org/wiki/Finite-state_machine
+- Go Documentation (https://golang.org/doc/)
+- Go File System API (https://pkg.go.dev/os)
+- Markdown/HTML Guide (https://www.markdownguide.org/basic-syntax/)
+- Finite State Machines (https://en.wikipedia.org/wiki/Finite-state_machine)
