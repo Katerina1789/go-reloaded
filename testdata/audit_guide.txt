@@ -1,0 +1,41 @@
+Audit Guide
+
+!Functional!
+- Allowed packages: only standard Go
+Pass [ ]  Fail [ ]
+
+Test 1
+sample.txt:
+If I make you BREAKFAST IN BED (low, 3) just say thank you instead of: how (cap) did you get in my house (up, 2) ?
+Run: go run . sample.txt result.txt
+Expected:
+If I make you breakfast in bed just say thank you instead of: How did you get in MY HOUSE?
+____________________________________
+Pass [ ]  Fail [ ]
+
+Test 2
+sample.txt:
+I have to pack 101 (bin) outfits. Packed 1a (hex) just to be sure
+Run: go run . sample.txt result.txt
+Expected:
+I have to pack 5 outfits. Packed 26 just to be sure
+____________________________________
+Pass [ ]  Fail [ ]
+
+Test 3
+sample.txt:
+Don not be sad ,because sad backwards is das . And das not good
+Run: go run . sample.txt result.txt
+Expected:
+Don not be sad, because sad backwards is das. And das not good
+____________________________________
+Pass [ ]  Fail [ ]
+
+Test 4
+sample.txt:
+harold wilson (cap, 2) : ' I am a optimist ,but a optimist who carries a raincoat . '
+Run: go run . sample.txt result.txt
+Expected:
+Harold Wilson: 'I am an optimist, but an optimist who carries a raincoat.'
+____________________________________
+Pass [ ]  Fail [ ]
