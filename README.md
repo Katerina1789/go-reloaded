@@ -1,48 +1,74 @@
 # go-reloaded
 
-A text transformation tool written in Go that applies formatting, correction, and grammar rules to input files. Designed for audit-based evaluation and collaborative testing.
-
 ## Overview
 
-`go-reloaded` reads a text file, applies a series of transformation rules (e.g., number conversion, capitalization, punctuation correction), and writes the modified output to a new file. It supports both simple and compound rule interactions, making it suitable for nuanced text editing tasks.
-This project is part of a collaborative audit framework where students act as both developers and auditors.
+`go-reloaded` is a rule-based text transformation tool written in Go. It reads an input file, applies a series of formatting and grammar rules, and writes the corrected output to a new file. The project is designed using a Finite State Machine (FSM) architecture and follows Test-Driven Development (TDD) principles.
 
-## Repository Structure
+This repository is structured to support audit-driven development and AI-assisted implementation. It includes detailed documentation, audit checklists, and a modular task system for incremental development.
 
-go-reloaded/  
-├── audit/             # Audit guide and golden test cases  
-│   ├── audit_guide.txt  
-│   └── golden_test_set.txt  
-├── docs/              # Project analysis and architecture  
-│   └── analysis.md  
-└── README.md          # Project overview and usage  
+---
 
--  Analysis Document: Problem description, rule breakdown, and architectural approach (docs/analysis.md)
--  Golden Test Set: Functional and custom test cases in natural language (audit/golden_test.txt)
--  Audit Guide: Checklist for verifying correctness and marking pass/fail outcomes (audit/audit_guide.txt)
+## Features
 
-## Usage
+- Rule-based transformations:
+  - Casing: `(up)`, `(low)`, `(cap)` and range variants `(up, n)`, `(low, n)`, `(cap, n)`
+  - Number conversion: `(hex)`, `(bin)`
+  - Article correction: `a` → `an` before vowels or 'h'
+  - Punctuation normalization
+  - Quote formatting using `' '`
+- FSM-based architecture for context-aware rule application
+- Audit-ready test cases and verification guides
+- AI agent support via meta-prompting and structured task flow
 
-To run the tool:
+---
 
-**go run . input.txt output.txt**
+## Getting Started
 
-Example:
-cat sample.txt
-Simply add 42 (hex) and 10 (bin) and you will see the result is 68.
-go run . sample.txt result.txt
-cat result.txt
-Simply add 66 and 2 and you will see the result is 68.
+### Run the tool
 
-## Testing & Auditing
+```bash
+go run . input.txt output.txt
+Audit mode (optional)
+bash
+go run . input.txt output.txt --audit
+Repository Structure
+plaintext
+go-reloaded/
+├── audit/                  # Audit checklists and test cases
+│   ├── audit_guide.txt
+│   ├── audit_tasks.md
+│   ├── golden_test_set.txt
+│   └── sample.txt
+├── docs/                   # Architecture, agent instructions, and references
+│   ├── analysis.md
+│   ├── architecture.md
+│   ├── how_to_work.md
+│   ├── agents.md
+│   ├── meta_prompt.md
+│   └── references.md
+├── tasks/                  # Agile task breakdown
+│   └── task_list.md
+├── README.md               # Project overview and usage
+Development Workflow
+Analyze the problem and architecture
 
-- All test cases are written in natural language for clarity and accessibility.
-- Auditors should use the audit guide to verify outputs and mark results.
-- The golden test set includes both audit examples and original edge cases.
+Write tests first (TDD)
 
-## External References
+Implement rule handlers and FSM logic
 
-- [Go Documentation](https://golang.org/doc/)
-- [Go File System API](https://pkg.go.dev/os)
-- [Markdown/HTML Guide](https://www.markdownguide.org/basic-syntax/)
-- [Finite State Machines](https://en.wikipedia.org/wiki/Finite-state_machine)
+Validate using audit checklists and golden test cases
+
+Document edge cases and commit changes
+
+See docs/how_to_work.md for a full step-by-step guide.
+
+References
+FSM design and rationale: docs/architecture.md
+
+Rule breakdown and analysis: docs/analysis.md
+
+Audit checklist and test cases: audit/audit_guide.txt, audit/golden_test_set.txt
+
+AI agent instructions: docs/agents.md, docs/meta_prompt.md
+
+External resources: docs/references.md
