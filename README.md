@@ -24,14 +24,16 @@ This repository is structured to support audit-driven development and AI-assiste
 
 ## Getting Started
 
-### Run the tool
+## Run the tool
 
 ```bash
 go run . input.txt output.txt
 Audit mode (optional)
 bash
 go run . input.txt output.txt --audit
-Repository Structure
+
+## Repository Structure
+
 plaintext
 go-reloaded/
 ├── audit/                  # Audit checklists and test cases
@@ -49,7 +51,9 @@ go-reloaded/
 ├── tasks/                  # Agile task breakdown
 │   └── task_list.md
 ├── README.md               # Project overview and usage
-Development Workflow
+
+## Development Workflow
+
 Analyze the problem and architecture
 
 Write tests first (TDD)
@@ -62,7 +66,8 @@ Document edge cases and commit changes
 
 See docs/how_to_work.md for a full step-by-step guide.
 
-References
+## References
+
 FSM design and rationale: docs/architecture.md
 
 Rule breakdown and analysis: docs/analysis.md
