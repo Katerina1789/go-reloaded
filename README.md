@@ -25,8 +25,9 @@ This repository is structured to support audit-driven development and AI-assiste
 ## Getting Started
 
 ```bash
-go run . input.txt output.txt
-go run . input.txt output.txt --audit
+# From project root (go.mod is in config/)
+GOMOD=config/go.mod go run . input.txt output.txt
+GOMOD=config/go.mod go run . input.txt output.txt --audit
 ```
 
 ## Repository Structure
@@ -37,6 +38,10 @@ go-reloaded/
 │   ├── audit_guide.md
 │   ├── audit_tasks.md
 │   └── golden_test_set.md
+├── config/                 # Configuration files
+│   ├── .gitignore
+│   ├── go.mod
+│   └── README.md
 ├── docs/                   # Architecture, agent instructions, and references
 │   ├── analysis.md
 │   ├── architecture.md
@@ -45,9 +50,7 @@ go-reloaded/
 │   └── references.md
 ├── tasks/                  # Agile task breakdown
 │   └── task_list.md
-├── .gitignore
 ├── agents.md
-├── go.mod
 ├── LICENSE
 └── README.md               # Project overview and usage
 ```

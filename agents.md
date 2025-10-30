@@ -44,7 +44,7 @@ Follow this 4-step execution model for each assigned task:
 
 - Begin by writing unit tests for the functionality described
 - Use Go’s `testing` package and follow naming conventions
-- Reference `audit/golden_test_set.txt` for expected outputs
+- Reference `audit/golden_test_set.md` for expected outputs
 
 ### Step 3 — Implement the Code
 
@@ -55,8 +55,8 @@ Follow this 4-step execution model for each assigned task:
 ### Step 4 — Validate & QA
 
 - Run all tests and confirm they pass
-- Compare outputs against `audit/golden_test_set.txt`
-- Use `audit/audit_guide.txt` to verify formatting, punctuation, and rule accuracy
+- Compare outputs against `audit/golden_test_set.md`
+- Use `audit/audit_guide.md` to verify formatting, punctuation, and rule accuracy
 
 ---
 
