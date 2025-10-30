@@ -22,13 +22,13 @@ Tasks must be ordered logically and collectively lead to full project completion
 You must read and use the following documents in this repository:
 
 | File | Purpose |
-|------|---------|
-| `docs/analysis.md` | Problem description, rule breakdown, architecture comparison |
-| `docs/architecture.md` | FSM design, rule handlers, state transitions, and rationale |
-| `docs/how_to_work.md` | Step-by-step guide for agents and developers |
-| `audit/golden_test_set.txt` | Functional and tricky test cases in natural language |
-| `audit/audit_guide.txt` | Checklist for verifying correctness |
-| `tasks/task_list.md` | Ordered Agile task breakdown with TDD-first structure |
+|------|----------|
+| [docs/analysis.md](../docs/analysis.md) | Problem description, rule breakdown, architecture comparison |
+| [docs/architecture.md](../docs/architecture.md) | FSM design, rule handlers, state transitions, and rationale |
+| [docs/how_to_work.md](../docs/how_to_work.md) | Step-by-step guide for agents and developers |
+| [audit/golden_test_set.md](../audit/golden_test_set.md) | Functional and tricky test cases in natural language |
+| [audit/audit_guide.md](../audit/audit_guide.md) | Checklist for verifying correctness |
+| [tasks/task_list.md](../tasks/task_list.md) | Ordered Agile task breakdown with TDD-first structure |
 
 ---
 

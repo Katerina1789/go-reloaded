@@ -24,54 +24,56 @@ This repository is structured to support audit-driven development and AI-assiste
 
 ## Getting Started
 
-## Run the tool
-
+```bash
 go run . input.txt output.txt
 go run . input.txt output.txt --audit
+```
 
 ## Repository Structure
 
+```
 go-reloaded/
 ├── audit/                  # Audit checklists and test cases
-│   ├── audit_guide.txt
+│   ├── audit_guide.md
 │   ├── audit_tasks.md
-│   ├── golden_test_set.txt
-│   └── sample.txt
+│   └── golden_test_set.md
 ├── docs/                   # Architecture, agent instructions, and references
 │   ├── analysis.md
 │   ├── architecture.md
 │   ├── how_to_work.md
-│   ├── agents.md
 │   ├── meta_prompt.md
 │   └── references.md
 ├── tasks/                  # Agile task breakdown
 │   └── task_list.md
+├── .gitignore
+├── agents.md
+├── go.mod
+├── LICENSE
 └── README.md               # Project overview and usage
+```
 
 ## Development Workflow
 
-Analyze the problem and architecture.
+1. Analyze the problem and architecture
+2. Write tests first (TDD)
+3. Implement rule handlers and FSM logic
+4. Validate using audit checklists and golden test cases
+5. Document edge cases and commit changes
 
-Write tests first (TDD).
-
-Implement rule handlers and FSM logic.
-
-Validate using audit checklists and golden test cases.
-
-Document edge cases and commit changes.
-
-See docs/how_to_work.md for a full step-by-step guide.
+See [docs/how_to_work.md](docs/how_to_work.md) for a full step-by-step guide.
 
 ## References
 
-FSM design and rationale: docs/architecture.md
-
-Rule breakdown and analysis: docs/analysis.md
-
-Audit checklist and test cases: audit/audit_guide.txt, audit/golden_test_set.txt
-
-AI agent instructions: docs/agents.md, docs/meta_prompt.md
-
-External resources and further reading: docs/references.md
+- [FSM design and rationale](docs/architecture.md)
+- [Rule breakdown and analysis](docs/analysis.md)
+- [Audit checklist and test cases](audit/audit_tasks.md)
+- [Golden test set](audit/golden_test_set.md)
+- [Audit guide](audit/audit_guide.md)
+- [AI agent instructions](agents.md)
+- [Meta-prompting guide](docs/meta_prompt.md)
+- [Development workflow](docs/how_to_work.md)
+- [Task breakdown](tasks/task_list.md)
 
 ## License
+
+MIT License - see LICENSE file for details

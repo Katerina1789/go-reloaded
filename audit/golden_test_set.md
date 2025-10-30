@@ -1,96 +1,147 @@
-# Golden Test Set 
+# Golden Test Set
 
 This document contains functional and custom test cases written in natural language. Each test includes input and expected output for audit verification.
 
+## Functional Test Cases
 
-## Functional Test Cases (from audit examples):
+### Test 1 - Mixed Casing Rules
 
----
-
-Input:
+**Input:**
+```
 If I make you BREAKFAST IN BED (low, 3) just say thank you instead of: how (cap) did you get in my house (up, 2) ?
+```
 
-Expected Output:
+**Expected Output:**
+```
 If I make you breakfast in bed just say thank you instead of: How did you get in MY HOUSE?
+```
 
 ---
 
-Input:
+### Test 2 - Number Conversions
+
+**Input:**
+```
 I have to pack 101 (bin) outfits. Packed 1a (hex) just to be sure.
+```
 
-Expected Output:
+**Expected Output:**
+```
 I have to pack 5 outfits. Packed 26 just to be sure.
+```
 
 ---
 
-Input:
+### Test 3 - Punctuation Spacing
+
+**Input:**
+```
 Don not be sad ,because sad backwards is das . And das not good
+```
 
-Expected Output:
+**Expected Output:**
+```
 Don not be sad, because sad backwards is das. And das not good
+```
 
 ---
 
-Input:
+### Test 4 - Quotes and Articles
+
+**Input:**
+```
 harold wilson (cap, 2) : ' I am a optimist ,but a optimist who carries a raincoat . '
+```
 
-Expected Output:
+**Expected Output:**
+```
 Harold Wilson: 'I am an optimist, but an optimist who carries a raincoat.'
+```
 
 ---
 
+## Custom Test Cases
 
-## Custom Test Cases (original additions):
+### Test 5 - Range Transformations
 
----
-
-Input:
+**Input:**
+```
 I was born to serve you (up, 4) ,not to question your orders (cap, 3) .
+```
 
-Expected Output:
+**Expected Output:**
+```
 I was BORN TO SERVE YOU, not to Question Your Orders.
+```
 
 ---
 
-Input:
+### Test 6 - Complex Quotes
+
+**Input:**
+```
 ' There is no right or wrong (cap, 5) ,only what is ,and what is not ... '
+```
 
-Expected Output:
-There Is No Right Or Wrong, only what is, and what is not...
+**Expected Output:**
+```
+'There Is No Right Or Wrong, only what is, and what is not...'
+```
 
 ---
 
-Input:
+### Test 7 - Mixed Rules
+
+**Input:**
+```
 I am the LAST DRAGONLORD (low, 2) ,and I will not help you (up, 3) !
+```
 
-Expected Output:
+**Expected Output:**
+```
 I am the last dragonlord, and I will NOT HELP YOU!
+```
 
 ---
 
-Input:
+### Test 8 - Article Correction
+
+**Input:**
+```
 ' You are a idiot ,arthur (cap) ,but you are my friend ' ,said colin morgan (cap, 2) .
+```
 
-Expected Output:
+**Expected Output:**
+```
 'You are an idiot, Arthur, but you are my friend', said Colin Morgan.
+```
 
 ---
 
-Input:
+### Test 9 - Uppercase in Quotes
+
+**Input:**
+```
 ' I am the most powerful sorcerer (up, 5) in all of camelot (cap) ' .
+```
 
-Expected Output:
-'I AM THE MOST POWERFUL SORCERER' in all of Camelot'.
-
----
-
-
-## Comprehensive Rule Interaction (long paragraph test):
+**Expected Output:**
+```
+'I AM THE MOST POWERFUL SORCERER in all of Camelot'.
+```
 
 ---
 
-Input:
+## Comprehensive Rule Interaction Test
+
+### Test 10 - Long Paragraph
+
+**Input:**
+```
 ' i (cap) wish it need not HAVE HAPPENED (low, 2) in my time , ' said frodo (cap) , ' so do i (up, 2) ... and so do all who live to see such times . ' but that is not for them (up, 3) to decide ; all we have to decide is what to do with the the time that is given to us (cap, 6) : add 1E (hex) years and 101 (bin) days ,and you will still feel a heavy burden .
+```
 
-Expected Output:
+**Expected Output:**
+```
 'I wish it need not have happened in my time,' said Frodo, 'so DO I... and so do all who live to see such times.' but that is NOT FOR THEM to decide; all we have to decide is what to do with the the Time That Is Given To Us: add 30 years and 5 days, and you will still feel an heavy burden.
+```

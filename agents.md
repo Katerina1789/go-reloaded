@@ -1,4 +1,4 @@
- # agents.md
+# agents.md
 
 ## Agent Operating Manual for `go-reloaded`
 
@@ -22,7 +22,7 @@ You are a software agent acting as a junior developer under the guidance of a hu
 ## Repository Map
 
 | Directory | Purpose |
-|-----------|---------|
+|-----------|----------|
 | `docs/` | Architecture, analysis, and agent instructions |
 | `audit/` | Audit guide and golden test cases |
 | `tasks/` | Agile task breakdown for implementation |
@@ -75,12 +75,12 @@ Follow this 4-step execution model for each assigned task:
 
 | File | Description |
 |------|-------------|
-| `docs/analysis.md` | Problem description, rule breakdown, architecture comparison |
-| `docs/architecture.md` | FSM design, rule handlers, state transitions |
-| `docs/how_to_work.md` | Step-by-step guide for agents |
-| `audit/golden_test_set.txt` | Functional and tricky test cases |
-| `audit/audit_guide.txt` | Checklist for verifying correctness |
-| `tasks/task_list.md` | Ordered Agile tasks with TDD-first structure |
+| [docs/analysis.md](docs/analysis.md) | Problem description, rule breakdown, architecture comparison |
+| [docs/architecture.md](docs/architecture.md) | FSM design, rule handlers, state transitions |
+| [docs/how_to_work.md](docs/how_to_work.md) | Step-by-step guide for agents |
+| [audit/golden_test_set.md](audit/golden_test_set.md) | Functional and tricky test cases |
+| [audit/audit_guide.md](audit/audit_guide.md) | Checklist for verifying correctness |
+| [tasks/task_list.md](tasks/task_list.md) | Ordered Agile tasks with TDD-first structure |
 
 ---
 
