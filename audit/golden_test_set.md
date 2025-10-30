@@ -2,6 +2,17 @@
 
 This document contains functional and custom test cases written in natural language. Each test includes input and expected output for audit verification.
 
+## Audit Mode Test Categories
+
+- **Hex Conversion:** Valid/invalid hex inputs, edge cases
+- **Binary Conversion:** Valid/invalid binary inputs, edge cases  
+- **Casing (Single):** up, low, cap transformations
+- **Casing (Range):** Multi-word transformations with ranges
+- **Punctuation:** Spacing normalization for all punctuation types
+- **Quotes:** Single quotes, nested quotes, boundary cases
+- **Articles:** a/an correction for vowels and h-words
+- **Integration:** Multiple rules combined, complex interactions
+
 ## Functional Test Cases
 
 ### Test 1 - Mixed Casing Rules

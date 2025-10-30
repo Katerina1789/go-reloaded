@@ -98,28 +98,28 @@ This document contains a complete list of implementation tasks for building the 
 
 ### TASK-011: Integration Test — Full Paragraph
 
-- **Functionality**: Apply all rules to a long paragraph
-- **Test First**: Use golden test case from `audit/golden_test_set.txt`
-- **Implementation Goal**: Run full pipeline and FSM
-- **Validation**: Output matches expected result exactly
+- **Functionality**: Build comprehensive integration tests that validate the entire text transformation pipeline
+- **Test First**: Golden test framework with 5 test cases of increasing complexity
+- **Implementation Goal**: End-to-end pipeline validation with performance benchmarks
+- **Validation**: Byte-for-byte output matching, <100ms processing time for 1000-word paragraphs
 
 ---
 
 ### TASK-012: CLI & Error Handling
 
-- **Functionality**: Handle missing files and invalid arguments
-- **Test First**: Run with no args or bad paths
-- **Implementation Goal**: Add usage message and error checks
-- **Validation**: Graceful failure and helpful messages
+- **Functionality**: Comprehensive error handling with user-friendly messages and robust validation
+- **Test First**: All error scenarios - missing files, permission issues, invalid arguments
+- **Implementation Goal**: Production-ready CLI with clear feedback and Unix exit codes
+- **Validation**: Clear error messages, proper exit codes (0=success, 1=error, 2=usage)
 
 ---
 
 ### TASK-013: Audit Mode
 
-- **Functionality**: Run tool in audit mode with checklist output
-- **Test First**: Compare result against expected and print pass/fail
-- **Implementation Goal**: Add audit flag to CLI
-- **Validation**: Checklist output for each test case
+- **Functionality**: Automated validation system with comprehensive test suite and detailed reporting
+- **Test First**: 20+ test cases covering all rules and edge cases with pass/fail checklist
+- **Implementation Goal**: Self-contained audit mode with --audit flag, detailed reports, CI/CD integration
+- **Validation**: Complete rule coverage, <5s execution time, actionable failure reports
 
 ---
 

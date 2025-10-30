@@ -4,6 +4,14 @@
 
 **Allowed packages:** Only standard Go library
 
+## Audit Mode Requirements
+
+**CLI Integration:** `go-reloaded --audit` or `go-reloaded -a`
+**Test Suite:** 20+ comprehensive test cases in `audit/test_cases/`
+**Report Format:** Rule categories with ✅/❌ status, failure details, summary statistics
+**Performance:** <5 seconds execution time for full audit suite
+**Exit Codes:** 0 (all pass), 1 (any failures)
+
 ---
 
 ## Test Cases

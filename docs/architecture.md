@@ -103,9 +103,25 @@ Each rule is implemented as a handler function that:
 
 ---
 
+## Testing Framework
+
+### Integration Testing (TASK-011)
+- Golden test framework with byte-for-byte output validation
+- 5 test cases of increasing complexity (100-5000 words)
+- Performance benchmarks: <100ms for 1000-word paragraphs
+- Memory profiling and leak detection
+
+### Audit Mode (TASK-013)
+- Automated validation system with `--audit` flag
+- 20+ comprehensive test cases covering all rules
+- Detailed pass/fail reporting with failure diagnostics
+- CI/CD integration for regression testing
+- Performance requirement: <5 seconds full suite execution
+
 ## Next Steps
 
 - Finalize FSM state definitions and transitions
 - Implement rule handlers incrementally using TDD
 - Validate outputs against `audit/golden_test_set.txt`
 - Document edge cases and tricky interactions
+- Integrate audit mode into development workflow
