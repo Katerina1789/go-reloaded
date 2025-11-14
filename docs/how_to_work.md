@@ -14,8 +14,7 @@ Before starting, make sure you:
 - Review the FSM architecture in `docs/architecture.md`
 - Familiarize yourself with the audit framework in `audit/`
 - Read the task breakdown in `tasks/task_list.md`
-- Follow the agent behavior guidelines in `docs/agents.md`
-- Use the meta prompt in `docs/meta_prompt.md` if operating as an AI agent
+- Follow AI agent guidelines in `agents.md` for consistent behavior
 
 ---
 
@@ -33,7 +32,7 @@ Before starting, make sure you:
 
 - Begin by writing unit tests for the described functionality
 - Use Go’s `testing` package
-- Reference examples from `audit/golden_test_set.txt`
+- Reference examples from `audit/golden_test_set.md`
 - Cover edge cases and tricky rule interactions
 
 ### Step 3 — Implement the Code
@@ -41,14 +40,14 @@ Before starting, make sure you:
 - Write clean, idiomatic Go code using only standard packages
 - Respect FSM transitions and state logic
 - Implement rule handlers as modular functions
-- Use helper functions from `utils/` if needed
+- Implement helper functions as needed within main.go or separate files
 - Keep code readable and maintainable
 
 ### Step 4 — Validate the Output
 
 - Run all tests and confirm they pass
-- Compare output against expected results in `audit/golden_test_set.txt`
-- Use `audit/audit_guide.txt` to verify formatting, punctuation, and correctness
+- Compare output against expected results in `audit/golden_test_set.md`
+- Use `audit/audit_guide.md` to verify formatting, punctuation, and correctness
 - Ensure the transformation matches audit expectations
 
 ### Step 5 — Document and Commit
@@ -65,7 +64,7 @@ Before starting, make sure you:
 - Use FSM architecture for rule coordination
 - Avoid external dependencies—use only Go standard library
 - Ask for clarification if a rule or task is ambiguous
-- Refer to `docs/meta_prompt.md` for agent-specific instructions
+- Follow agent guidelines in `agents.md` for AI-assisted development
 
 ---
 

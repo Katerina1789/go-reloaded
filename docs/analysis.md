@@ -41,8 +41,42 @@ The `go-reloaded` tool is a text processor written in Go programming language th
 - Building an FSM requires defining states and transitions, making it more complex.
 - It offers precise control over rule interactions and is ideal for nuanced text processing.
 
-## Chosen Architecture
+## Architecture Decision: FSM vs Pipeline
 
-**FSM**
+### Pipeline Analysis
+**Pros:**
+- Simple linear processing
+- Easy to implement and debug
+- Clear rule separation
 
-I chose FSM because it allows for more precise control over how rules interact, especially in cases where punctuation, capitalization, and article correction overlap. It enables state tracking (e.g., inside quotes, after punctuation) and supports context-sensitive transformations. While more complex to implement, FSM offers greater flexibility and accuracy for this type of text processing.
+**Cons:**
+- No context awareness
+- Cannot handle overlapping rules (quotes + punctuation)
+- Risk of rule conflicts
+- Cannot track state for range transformations
+
+### FSM Analysis
+**Pros:**
+- Context-aware processing
+- Handles complex rule interactions
+- State tracking for quotes, punctuation, ranges
+- Precise control over transformations
+
+**Cons:**
+- More complex implementation
+- Requires state management
+
+### Final Choice: FSM
+
+**Rationale:** FSM is essential for this project because:
+1. **Quote handling** requires state tracking (`'text'` boundaries)
+2. **Range transformations** need to count backwards (`(up, 3)`)
+3. **Punctuation rules** depend on context (grouped vs single)
+4. **Article correction** needs lookahead for vowel detection
+
+**Example justifying FSM:** Input `'hello (up, 2) world'` requires:
+- Quote state tracking
+- Range counting (2 words back)
+- Proper quote boundary handling
+
+A pipeline cannot coordinate these overlapping requirements.

@@ -23,10 +23,13 @@ You are a software agent acting as a junior developer under the guidance of a hu
 
 | Directory | Purpose |
 |-----------|----------|
-| `docs/` | Architecture, analysis, and agent instructions |
-| `audit/` | Audit guide and golden test cases |
-| `tasks/` | Agile task breakdown for implementation |
-| `README.md` | Project overview and usage instructions |
+| `audit/` | Audit framework, test cases, and validation |
+| `docs/` | Technical documentation and architecture |
+| `tasks/` | Agile task breakdown and specifications |
+| `internal/` | Modular command implementations and FSM |
+| `agents.md` | AI agent operating instructions |
+| `main.go` | Application entry point |
+| `go.mod` | Go module configuration |
 
 ---
 
@@ -75,12 +78,15 @@ Follow this 4-step execution model for each assigned task:
 
 | File | Description |
 |------|-------------|
-| [docs/analysis.md](docs/analysis.md) | Problem description, rule breakdown, architecture comparison |
-| [docs/architecture.md](docs/architecture.md) | FSM design, rule handlers, state transitions |
-| [docs/how_to_work.md](docs/how_to_work.md) | Step-by-step guide for agents |
-| [audit/golden_test_set.md](audit/golden_test_set.md) | Functional and tricky test cases |
-| [audit/audit_guide.md](audit/audit_guide.md) | Checklist for verifying correctness |
-| [tasks/task_list.md](tasks/task_list.md) | Ordered Agile tasks with TDD-first structure |
+| [docs/analysis.md](docs/analysis.md) | Problem analysis and architecture justification |
+| [docs/architecture.md](docs/architecture.md) | FSM design and implementation guide |
+| [docs/how_to_work.md](docs/how_to_work.md) | Development workflow and TDD process |
+| [docs/ai_usage.md](docs/ai_usage.md) | AI transparency documentation |
+| [docs/reproducibility.md](docs/reproducibility.md) | Peer implementation guide |
+| [internal/fsm.go](internal/fsm.go) | FSM controller and state management |
+| [audit/golden_test_set.md](audit/golden_test_set.md) | Expected outputs and test cases |
+| [audit/audit_guide.md](audit/audit_guide.md) | Audit checklist and validation |
+| [tasks/task_list.md](tasks/task_list.md) | Agile task breakdown |
 
 ---
 

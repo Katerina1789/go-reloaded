@@ -143,9 +143,37 @@ I am the last dragonlord, and I will NOT HELP YOU!
 
 ---
 
+### Test 10 - Edge Cases
+
+**Input:**
+```
+Invalid hex: ZZ (hex) and invalid bin: 22 (bin) should remain unchanged.
+```
+
+**Expected Output:**
+```
+Invalid hex: ZZ (hex) and invalid bin: 22 (bin) should remain unchanged.
+```
+
+---
+
+### Test 11 - Nested Quotes
+
+**Input:**
+```
+He said ' she told me ' hello world ' yesterday ' .
+```
+
+**Expected Output:**
+```
+He said 'she told me' hello world 'yesterday'.
+```
+
+---
+
 ## Comprehensive Rule Interaction Test
 
-### Test 10 - Long Paragraph
+### Test 12 - Long Paragraph
 
 **Input:**
 ```

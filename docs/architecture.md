@@ -83,13 +83,17 @@ Each rule is implemented as a handler function that:
 
 ---
 
-## Modular Design
+## Implementation Structure
 
 - `main.go`: Entry point and CLI handler
-- `fsm.go`: FSM controller and state manager
-- `rules/`: Contains individual rule handlers
-- `utils/`: Tokenization, string helpers, and file I/O
-- `tests/`: Unit tests for each rule and integration tests for full paragraphs
+- `internal/fsm.go`: FSM controller and state management
+- `internal/hex.go`: Hexadecimal conversion command
+- `internal/bin.go`: Binary conversion command
+- `internal/up.go`: Uppercase transformation command
+- `internal/low.go`: Lowercase transformation command
+- `internal/cap.go`: Capitalization command
+- `internal/range.go`: Range transformation commands
+- `internal/punctuation.go`: Punctuation, quotes, and articles processing
 
 ---
 
@@ -122,6 +126,6 @@ Each rule is implemented as a handler function that:
 
 - Finalize FSM state definitions and transitions
 - Implement rule handlers incrementally using TDD
-- Validate outputs against `audit/golden_test_set.txt`
+- Validate outputs against `audit/golden_test_set.md`
 - Document edge cases and tricky interactions
 - Integrate audit mode into development workflow
