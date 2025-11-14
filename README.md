@@ -140,18 +140,9 @@ go run . sample.txt result.txt --audit
 
 ## Development Standards
 
-### Code Quality
-- **Test-Driven Development**: All features implemented with tests first
-- **Clean Architecture**: Separation of concerns with modular design
-- **Performance Optimization**: Efficient algorithms with minimal memory footprint
-- **Documentation**: Comprehensive inline and external documentation
+**Code Quality**: Test-driven development, clean architecture, performance optimization, comprehensive documentation
 
-### Contributing Guidelines
-1. **Analysis**: Review requirements and existing architecture
-2. **Testing**: Implement comprehensive test cases
-3. **Development**: Write clean, documented code
-4. **Validation**: Ensure all tests pass with audit mode
-5. **Documentation**: Update relevant documentation
+**Process**: Analysis → Testing → Implementation → Validation → Documentation
 
 ## License
 
