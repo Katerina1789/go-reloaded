@@ -147,7 +147,3 @@ go run . sample.txt result.txt --audit
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for complete details.
-
----
-
-**Built with precision engineering principles and modern Go practices**

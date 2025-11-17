@@ -117,7 +117,7 @@ This document contains a complete list of implementation tasks for building the 
 ### TASK-013: Audit Mode
 
 - **Functionality**: Automated validation system with comprehensive test suite and detailed reporting
-- **Test First**: 20+ test cases covering all rules and edge cases with pass/fail checklist
+- **Test First**: 10+ test cases covering all rules and edge cases with pass/fail checklist
 - **Implementation Goal**: Self-contained audit mode with --audit flag, detailed reports, CI/CD integration
 - **Validation**: Complete rule coverage, <5s execution time, actionable failure reports
 

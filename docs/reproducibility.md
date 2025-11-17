@@ -118,7 +118,7 @@ func (fsm *FSM) GetOutput() string
 - Memory profiling
 
 #### Audit Tests
-- All 20+ test cases from audit_guide.md
+- All test cases from audit_guide.md and golden_test_set.md
 - Automated pass/fail reporting
 - Performance validation
 
