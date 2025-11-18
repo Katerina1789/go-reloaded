@@ -1,3 +1,5 @@
+// Package internal provides hexadecimal to decimal conversion for go-reloaded.
+// Converts the previous word from hexadecimal format to decimal when (hex) rule is encountered.
 package internal
 
 import "strconv" // For number parsing and formatting

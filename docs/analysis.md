@@ -69,14 +69,22 @@ The `go-reloaded` tool is a text processor written in Go programming language th
 ### Final Choice: FSM
 
 **Rationale:** FSM is essential for this project because:
-1. **Quote handling** requires state tracking (`'text'` boundaries)
-2. **Range transformations** need to count backwards (`(up, 3)`)
-3. **Punctuation rules** depend on context (grouped vs single)
-4. **Article correction** needs lookahead for vowel detection
+1. **Quote state tracking** - Must know when inside `'text'` to apply rules correctly
+2. **Range transformations** - `(up, 3)` must count backwards while respecting quote boundaries
+3. **Nested rule interactions** - Rules inside quotes behave differently than outside
+4. **Context-sensitive punctuation** - Same punctuation has different spacing rules based on context
 
-**Example justifying FSM:** Input `'hello (up, 2) world'` requires:
-- Quote state tracking
-- Range counting (2 words back)
-- Proper quote boundary handling
+**Concrete example justifying FSM:**
+Input: `'hello (up, 2) world' and more text ,with punctuation`
 
-A pipeline cannot coordinate these overlapping requirements.
+**FSM handles:**
+- State: Normal → QuoteOpen → Normal
+- Applies `(up, 2)` only to words inside quotes: `'HELLO WORLD'`
+- Punctuation spacing differs inside vs outside quotes
+
+**Pipeline problems:**
+- Cannot track quote boundaries across multiple rules
+- Range counting would cross quote boundaries incorrectly
+- No way to apply different punctuation rules based on context
+
+This level of contextual coordination requires state management that only FSM provides.

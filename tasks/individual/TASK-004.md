@@ -6,43 +6,35 @@
 - **Confidence**: High
 - **Hard Dependencies**: TASK-003
 - **Soft Dependencies**: None
-- **Related Architecture**: Rule handlers, number conversion
+- **Related Architecture**: Number conversion, rule handlers
 
 ## Mission Profile
-- Implement hexadecimal to decimal conversion rule handler for the "(hex)" transformation
-- Create robust parsing that validates hexadecimal format and handles edge cases
-- Integrate with FSM controller to replace previous token with decimal equivalent
-- Establish error handling patterns for invalid hexadecimal inputs
+Convert previous word from hexadecimal to decimal when `(hex)` marker is encountered. Handle valid hex inputs and gracefully ignore invalid ones.
 
 ## Deliverables
-- `internal/rules/hex.go` with hexadecimal conversion logic
-- Validation functions for hexadecimal format checking
-- Error handling for invalid hex strings and edge cases
-- Unit tests covering valid conversions, invalid inputs, and boundary conditions
-- Integration with FSM controller for rule registration and execution
+- `internal/hex.go` with hexadecimal conversion logic
+- `ApplyHex()` function that returns bool for success/failure
+- Validation for valid hex characters (0-9, A-F, a-f)
+- Integration with FSM controller
+- Unit tests for valid/invalid hex inputs
 
 ## Acceptance Criteria
-- ✅ Converts "1E (hex)" to "30" correctly
-- ✅ Handles uppercase and lowercase hex digits (A-F, a-f)
-- ✅ Validates hex format and rejects invalid characters
-- ✅ Handles edge cases: empty strings, overflow conditions, malformed input
-- ✅ Integrates seamlessly with FSM state transitions
+- ✅ `"1E (hex)"` → `"30"`
+- ✅ `"ff (hex)"` → `"255"`
+- ✅ `"ZZ (hex)"` → `"ZZ (hex)"` (invalid, unchanged)
+- ✅ Case-insensitive hex parsing
+- ✅ Returns bool indicating conversion success
 
 ## Verification Plan
-- `unit`: Test valid hex conversions (0-9, A-F), invalid inputs, edge cases
-- `integration`: Test hex rule within FSM context with surrounding text
-- `error`: Verify graceful handling of malformed hex strings
-- `audit`: Compare outputs against golden test set hex examples
+- `unit`: Test valid hex conversions, invalid input handling
+- `integration`: Test with FSM controller
+- `edge`: Test empty strings, non-hex characters
+- `performance`: Verify efficient parsing
 
 ## References
-- `docs/architecture.md`: Rule handler interface and FSM integration
-- `audit/golden_test_set.md`: Hexadecimal conversion test cases
-- Go standard library: `strconv` package for number conversion
-
-## Notes for Agent
-- Use Go's built-in hex parsing capabilities for reliability
-- Consider case sensitivity and format validation requirements
-- Design error handling to be consistent with other rule handlers
+- Go `strconv` package for hex parsing
+- `docs/analysis.md`: Hex conversion rule specification
+- Project requirements for number conversion
 
 ## PROMPT — FULL 4-STEP FLOW
 
@@ -50,27 +42,23 @@
 You are executing **Rule Handler — Hexadecimal (TASK-004)** for go-reloaded.
 
 ### Step 1 — Analyze & Confirm
-- Review `docs/architecture.md` for rule handler interface requirements
-- Study `audit/golden_test_set.md` for hexadecimal conversion examples
-- Examine FSM controller from TASK-003 for integration patterns
+- Review hex conversion requirements and edge cases
+- Understand integration with FSM controller
 - WAIT for user confirmation before proceeding
 
 ### Step 2 — Write the Tests (TDD)
-- Create unit tests for valid hexadecimal conversions
-- Test invalid input handling and error conditions
-- Test integration with FSM controller and token replacement
-- Prepare test cases matching golden test set examples
+- Test valid hex conversions (uppercase, lowercase)
+- Test invalid input handling
+- Test edge cases and boundary conditions
 
 ### Step 3 — Implement the Code
-- Build hexadecimal parser with format validation
-- Implement conversion logic using Go standard library
-- Create FSM integration interface for rule registration
-- Add comprehensive error handling and logging
+- Build ApplyHex() function with validation
+- Implement hex parsing using Go standard library
+- Ensure proper error handling
 
 ### Step 4 — Validate & QA
-- Run all hex conversion tests and verify accuracy
-- Test FSM integration with complete text processing
-- Validate against audit golden test cases
-- Check error handling with various invalid inputs
+- Run all hex conversion tests
+- Verify invalid inputs remain unchanged
+- Test integration with FSM
 - If verification passes, output: **"✅ Rule Handler — Hexadecimal (TASK-004) self-verified. Ready for review."**
 ```

@@ -1,11 +1,12 @@
+// Package main provides the CLI interface for go-reloaded text transformation tool.
+// Handles file I/O, command-line arguments, audit mode, and coordinates the FSM processing.
 package main
 
 import (
-	"fmt"    // For printing messages
-	"os"     // For file operations and command line args
-	"strings" // For text manipulation
-
-	"go-reloaded/internal" // Our FSM and transformation logic
+	"fmt"                  // For printing messages
+	"go-reloaded/internal" // FSM and transformation logic
+	"os"                   // For file operations and command line args
+	"strings"              // For text manipulation
 )
 
 func main() {
@@ -19,7 +20,7 @@ func main() {
 	// Check if user wants audit mode (testing)
 	if len(os.Args) > 3 && os.Args[3] == "--audit" {
 		runAuditMode() // Run built-in tests
-		return        // Exit after audit
+		return         // Exit after audit
 	}
 
 	// Read the input file content
@@ -41,8 +42,8 @@ func main() {
 }
 
 func processText(text string) string {
-	fsm := internal.NewFSM()    // Create new FSM instance
-	words := tokenize(text)     // Split text into tokens
+	fsm := internal.NewFSM() // Create new FSM instance
+	words := tokenize(text)  // Split text into tokens
 
 	// Feed each word to the FSM for processing
 	for _, word := range words {
@@ -56,7 +57,7 @@ func tokenize(text string) []string {
 	// Split text by spaces to get individual words
 	words := strings.Fields(text)
 	result := make([]string, 0) // Create empty slice for results
-	
+
 	// Process each word, combining range patterns
 	for i := 0; i < len(words); i++ {
 		word := words[i]
@@ -65,18 +66,18 @@ func tokenize(text string) []string {
 			// Combine with next word to form complete pattern like "(up, 2)"
 			combined := word + " " + words[i+1]
 			result = append(result, combined) // Add combined pattern
-			i++                              // Skip next word since we combined it
+			i++                               // Skip next word since we combined it
 		} else {
 			result = append(result, word) // Add word as-is
 		}
 	}
-	
+
 	return result // Return tokenized words
 }
 
 func runAuditMode() {
 	fmt.Println("Running audit mode...")
-	
+
 	testCases := []struct {
 		name     string
 		input    string
@@ -95,7 +96,7 @@ func runAuditMode() {
 		{"Quotes multiple words", "As Elton John said: ' I am the most well-known homosexual in the world '", "As Elton John said: 'I am the most well-known homosexual in the world'"},
 		{"Complex example", "it (cap) was the best of times, it was the worst of times (up)", "It was the best of times, it was the worst of TIMES"},
 	}
-	
+
 	passed := 0
 	for _, tc := range testCases {
 		result := processText(tc.input)
@@ -108,7 +109,7 @@ func runAuditMode() {
 			fmt.Printf("   Got:      %s\n", result)
 		}
 	}
-	
+
 	fmt.Printf("\nAudit Results: %d/%d tests passed\n", passed, len(testCases))
 	if passed == len(testCases) {
 		fmt.Println("🎉 All tests passed!")

@@ -1,3 +1,5 @@
+// Package internal provides uppercase transformation for go-reloaded.
+// Converts the previous word(s) to UPPERCASE when (up) or (up, n) rules are encountered.
 package internal
 
 import "strings" // For string case conversion

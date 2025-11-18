@@ -1,3 +1,5 @@
+// Package internal provides post-processing functions for go-reloaded.
+// Handles punctuation spacing, quote formatting, and article correction (a/an) after FSM processing.
 package internal
 
 import (

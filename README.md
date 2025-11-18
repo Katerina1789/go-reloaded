@@ -2,152 +2,114 @@
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=for-the-badge&logo=go)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Architecture](https://img.shields.io/badge/Architecture-FSM-green?style=for-the-badge)](docs/architecture.md)
-[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=for-the-badge)](audit/golden_test_set.md)
+[![Tests](https://img.shields.io/badge/Tests-12/12-brightgreen?style=for-the-badge)](audit/golden_test_set.md)
 
 ## Overview
 
-**go-reloaded** is an enterprise-grade text transformation engine implementing a Finite State Machine architecture for context-aware rule processing. Built with Go, it provides deterministic text transformations with comprehensive audit capabilities and modular design patterns.
+A text transformation tool implementing Finite State Machine architecture for context-aware rule processing. Built with Go as part of Zone01 Athens curriculum.
 
-## Key Features
+## Features
 
-### Core Transformations
-- **Numerical Base Conversion**: Hexadecimal and binary to decimal transformation
-- **Case Manipulation**: Single and range-based case transformations with precise control
-- **Linguistic Processing**: Intelligent article correction and punctuation normalization
-- **Quote Management**: Context-aware quotation mark placement and spacing
+- **Number Conversion**: Hexadecimal and binary to decimal
+- **Case Transformation**: Single word and range-based operations  
+- **Text Formatting**: Punctuation normalization and quote handling
+- **Grammar Correction**: Automatic article correction (a/an)
+- **Built-in Testing**: Comprehensive audit mode with 12 test cases
 
-### Technical Excellence
-- **FSM Architecture**: State-driven processing ensuring consistent rule application
-- **Modular Design**: Command pattern implementation with isolated rule handlers
-- **Comprehensive Testing**: Golden test suite with 12+ validation scenarios
-- **Performance Optimized**: Sub-100ms processing for 1000-word documents
-- **Zero Dependencies**: Pure Go standard library implementation
+## Installation
 
-## Installation & Usage
-
-### Prerequisites
-- Go 1.21 or higher
-- Unix-like environment (Linux, macOS, WSL)
-
-### Quick Start
 ```bash
-git clone https://github.com/username/go-reloaded.git
+git clone https://github.com/Katerina1789/go-reloaded.git
 cd go-reloaded
 go mod tidy
 ```
 
-### Basic Usage
+## Usage
+
 ```bash
-# Process text file
+# Transform text file
 go run . input.txt output.txt
 
-# Run comprehensive validation
-go run . input.txt output.txt --audit
+# Run test suite
+go run . sample.txt result.txt --audit
 ```
 
-### Transformation Examples
-```go
-// Number base conversion
-"1E (hex) files" → "30 files"
-"101 (bin) users" → "5 users"
+## Examples
 
-// Case transformations
-"hello (up)" → "HELLO"
-"WORLD (low)" → "world"
-"title (cap)" → "Title"
+```
+Input:  "1E (hex) files and 101 (bin) users"
+Output: "30 files and 5 users"
 
-// Range operations
-"make it happen (up, 3)" → "MAKE IT HAPPEN"
+Input:  "make it happen (up, 3)"
+Output: "MAKE IT HAPPEN"
 
-// Linguistic corrections
-"a amazing story" → "an amazing story"
-"hello , world !" → "hello, world!"
-"' quoted text '" → "'quoted text'"
+Input:  "a amazing story"
+Output: "an amazing story"
+
+Input:  "hello , world !"
+Output: "hello, world!"
 ```
 
 ## Architecture
 
-### System Design
 ```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   CLI Layer     │───▶│   FSM Controller │───▶│  Rule Handlers  │
-│   (main.go)     │    │   (fsm.go)       │    │  (commands/)    │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-         │                       │                       │
-         ▼                       ▼                       ▼
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   File I/O      │    │ State Management │    │ Text Processing │
-│   Operations    │    │ & Transitions    │    │ & Validation    │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
+Text Input → Tokenizer → FSM Controller → Rule Handlers → Post-Processing → Output
 ```
 
-### Project Structure
+**Components:**
+- **FSM Controller**: Manages state transitions (Normal ↔ QuoteOpen)
+- **Rule Handlers**: Process transformations (hex, bin, case, range)
+- **Post-Processing**: Fixes punctuation, quotes, and articles
+
+## Project Structure
+
 ```
 go-reloaded/
-├── internal/                   # Core implementation
-│   ├── fsm.go                 # Finite State Machine controller
-│   ├── hex.go                 # Hexadecimal conversion
-│   ├── bin.go                 # Binary conversion
-│   ├── up.go                  # Uppercase transformation
-│   ├── low.go                 # Lowercase transformation
-│   ├── cap.go                 # Capitalization
-│   ├── range.go               # Range-based operations
-│   └── punctuation.go         # Post-processing rules
-├── docs/                      # Technical documentation
-│   ├── architecture.md        # System design specifications
-│   ├── analysis.md            # Requirements analysis
-│   └── reproducibility.md     # Implementation guide
-├── audit/                     # Quality assurance
-│   ├── golden_test_set.md     # Validation test cases
-│   └── audit_guide.md         # Testing procedures
-└── main.go                    # Application entry point
+├── internal/           # Core implementation
+│   ├── fsm.go         # FSM controller
+│   ├── hex.go         # Hex conversion
+│   ├── bin.go         # Binary conversion
+│   ├── up.go          # Uppercase
+│   ├── low.go         # Lowercase
+│   ├── cap.go         # Capitalization
+│   ├── range.go       # Range operations
+│   └── punctuation.go # Post-processing
+├── docs/              # Documentation
+├── audit/             # Test cases & validation
+├── tasks/             # Task breakdown
+├── agents.md          # AI agent instructions
+└── main.go            # CLI entry point
 ```
 
-## Quality Assurance
+## Testing
 
-### Testing Framework
-- **Golden Test Suite**: 12+ comprehensive validation scenarios
-- **Edge Case Coverage**: Invalid input handling and boundary conditions
-- **Performance Benchmarks**: Automated performance validation
-- **Audit Mode**: Built-in validation with detailed reporting
+The project includes comprehensive testing with 12 validation scenarios:
 
-### Validation Metrics
 ```bash
-# Execute full test suite
 go run . sample.txt result.txt --audit
 
-# Expected output:
-# ✅ Hex conversion: PASS
-# ✅ Binary conversion: PASS
-# ✅ Case transformations: PASS
-# ✅ Range operations: PASS
-# ✅ Punctuation normalization: PASS
-# ✅ Quote formatting: PASS
-# ✅ Article correction: PASS
-# 
-# Audit Results: 12/12 tests passed
+✅ Hex conversion: PASS
+✅ Binary conversion: PASS
+✅ Case transformations: PASS
+✅ Range operations: PASS
+✅ Punctuation normalization: PASS
+✅ Quote formatting: PASS
+✅ Article correction: PASS
+
+Audit Results: 12/12 tests passed
 ```
 
-## Technical Documentation
+## Documentation
 
-| Document | Description |
-|----------|-------------|
-| [Architecture Guide](docs/architecture.md) | FSM design patterns and implementation details |
-| [Requirements Analysis](docs/analysis.md) | Problem domain analysis and rule specifications |
-| [Test Specifications](audit/golden_test_set.md) | Comprehensive validation test cases |
-| [Implementation Guide](docs/reproducibility.md) | Step-by-step development instructions |
-
-## Development Standards
-
-**Code Quality**: Test-driven development, clean architecture, performance optimization, comprehensive documentation
-
-**Process**: Analysis → Testing → Implementation → Validation → Documentation
+- [Architecture Guide](docs/architecture.md) - FSM design and implementation
+- [Requirements Analysis](docs/analysis.md) - Problem analysis and rule specifications
+- [Test Cases](audit/golden_test_set.md) - Comprehensive validation scenarios
+- [AI Usage](docs/ai_usage.md) - Transparency documentation
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for complete details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Built with precision engineering principles and modern Go practices**
+**Zone01 Athens Project**

@@ -1,3 +1,5 @@
+// Package internal provides binary to decimal conversion for go-reloaded.
+// Converts the previous word from binary format to decimal when (bin) rule is encountered.
 package internal
 
 import "strconv" // For number parsing and formatting

@@ -7,7 +7,7 @@ This document ensures that any peer can implement the `go-reloaded` project from
 ## Implementation Checklist
 
 ### Prerequisites
-- [ ] Go 1.19+ installed
+- [ ] Go 1.21+ installed
 - [ ] Understanding of FSM concepts
 - [ ] Familiarity with Go testing package
 
@@ -42,14 +42,22 @@ const (
 
 #### 3. Core Functions
 ```go
-// Command functions
-func ApplyHex(result []string)
-func ApplyBin(result []string)
+// Command functions (return bool for success/failure)
+func ApplyHex(result []string) bool
+func ApplyBin(result []string) bool
 func ApplyUp(result []string, count int)
 func ApplyLow(result []string, count int)
 func ApplyCap(result []string, count int)
+func ApplyRangeRule(result []string, rule string)
+func IsRangeRule(word string) bool
+
+// Post-processing functions
+func FixPunctuation(text string) string
+func FixQuotes(text string) string
+func FixArticles(text string) string
 
 // FSM controller
+func NewFSM() *FSM
 func (fsm *FSM) ProcessWord(word string)
 func (fsm *FSM) GetOutput() string
 ```
@@ -57,11 +65,17 @@ func (fsm *FSM) GetOutput() string
 #### 4. Implementation Order
 1. Create internal package structure
 2. Implement individual command files (hex.go, bin.go, up.go, low.go, cap.go)
-3. Implement range.go for range transformations
-4. Implement punctuation.go for post-processing
-5. Implement fsm.go controller
-6. Update main.go to use internal package
-7. Test with audit mode
+3. Implement range.go for range transformations  
+4. Implement punctuation.go for post-processing (quotes, punctuation, articles)
+5. Implement fsm.go controller with tokenization logic
+6. Create main.go with CLI handling and audit mode
+7. Test with `go run . sample.txt result.txt --audit`
+
+#### 5. Key Implementation Details
+- **Tokenization**: Handle range patterns like `(up, 2)` as single tokens
+- **FSM Processing**: Apply transformations during word processing
+- **Post-processing**: Fix punctuation, quotes, and articles after FSM
+- **Audit Mode**: Built-in test suite with 12 comprehensive test cases
 
 ### Validation Points
 
@@ -94,6 +108,7 @@ func (fsm *FSM) GetOutput() string
 // Input: "'hello (up) world'"
 // States: Normal → QuoteOpen → Normal
 // FSM applies transformations inside quotes
+// Post-processing fixes quote spacing
 // Output: "'HELLO world'"
 ```
 
@@ -118,8 +133,8 @@ func (fsm *FSM) GetOutput() string
 - Memory profiling
 
 #### Audit Tests
-- All 20+ test cases from audit_guide.md
-- Automated pass/fail reporting
+- All 12 test cases from golden_test_set.md
+- Automated pass/fail reporting with `--audit` flag
 - Performance validation
 
 ## Success Criteria

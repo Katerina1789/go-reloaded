@@ -4,45 +4,37 @@
 - **Owner**: Backend Developer
 - **Size**: M
 - **Confidence**: Medium
-- **Hard Dependencies**: TASK-003, TASK-006
-- **Soft Dependencies**: None
-- **Related Architecture**: Rule handlers, range processing
+- **Hard Dependencies**: TASK-006
+- **Soft Dependencies**: TASK-002 (tokenization)
+- **Related Architecture**: Range transformations, rule handlers
 
 ## Mission Profile
-- Extend casing transformation to handle multiple words with range syntax
-- Parse range parameters from rule markers like `(up, 3)`, `(low, 2)`, `(cap, 5)`
-- Apply transformations to the specified number of previous words
-- Handle edge cases where range exceeds available words
+Transform previous `n` words casing using range patterns like `(up, 3)`, `(low, 2)`, `(cap, 4)`. Extend casing logic to handle multiple words counting backwards from the rule marker.
 
 ## Deliverables
-- Extension to `internal/rules/casing.go` with range processing logic
-- Range parameter parsing and validation
-- Backward token traversal for multi-word transformation
-- Comprehensive unit tests for range operations and edge cases
-- Error handling for invalid range parameters
+- `internal/range.go` with range transformation logic
+- `ApplyRangeRule()` function that parses and applies range rules
+- `IsRangeRule()` function to detect range patterns
+- Integration with FSM controller and tokenization
+- Unit tests for range transformations and edge cases
 
 ## Acceptance Criteria
-- ✅ `"this is exciting (up, 3)"` correctly transforms to `"THIS IS EXCITING"`
-- ✅ `"hello world (cap, 2)"` correctly transforms to `"Hello World"`
-- ✅ Range exceeding available words handles gracefully (transforms available words only)
-- ✅ Invalid range parameters (negative, zero, non-numeric) are handled properly
-- ✅ Integration with existing single-word casing logic
+- ✅ `"this is exciting (up, 3)"` → `"THIS IS EXCITING"`
+- ✅ `"THE WINTER (low, 2)"` → `"the winter"`
+- ✅ `"foolishness (cap, 6)"` → handles boundary correctly
+- ✅ Handles cases where range exceeds available words
+- ✅ Proper parsing of range syntax `(rule, number)`
 
 ## Verification Plan
-- `unit`: Test range parsing and multi-word transformations
-- `edge`: Test ranges exceeding word count and invalid parameters
-- `integration`: Test with FSM controller and token processing
-- `regression`: Ensure single-word casing still works correctly
+- `unit`: Test range parsing, boundary conditions
+- `integration`: Test with FSM controller and various ranges
+- `edge`: Test ranges exceeding word count, invalid syntax
+- `performance`: Verify efficient processing for large ranges
 
 ## References
-- `docs/architecture.md`: Rule handler interface and token processing
-- `audit/golden_test_set.md`: Range casing transformation test cases
-- TASK-006 implementation for single-word casing patterns
-
-## Notes for Agent
-- Extend existing casing handler rather than creating separate file
-- Implement robust range parameter parsing with error handling
-- Consider token boundary detection for accurate word counting
+- `docs/analysis.md`: Range rule specifications
+- Go `strconv` package for number parsing
+- Tokenization requirements from TASK-002
 
 ## PROMPT — FULL 4-STEP FLOW
 
@@ -50,27 +42,23 @@
 You are executing **Rule Handler — Casing (Range) (TASK-007)** for go-reloaded.
 
 ### Step 1 — Analyze & Confirm
-- Review single-word casing implementation from TASK-006
-- Study FSM controller token processing from TASK-003
-- Examine `audit/golden_test_set.md` for range casing test cases
+- Review range rule syntax and counting logic
+- Understand backward word counting from rule position
 - WAIT for user confirmation before proceeding
 
 ### Step 2 — Write the Tests (TDD)
-- Create unit tests for range parameter parsing
-- Test multi-word transformations with various ranges
-- Test edge cases (range > available words, invalid params)
-- Prepare integration tests with FSM controller
+- Test range parsing from `(up, 3)` format
+- Test backward word counting and transformation
+- Test boundary conditions and invalid ranges
 
 ### Step 3 — Implement the Code
-- Extend casing handler with range processing logic
-- Implement backward token traversal for multi-word selection
-- Add range parameter validation and error handling
-- Integrate with existing FSM controller interface
+- Build ApplyRangeRule() with parsing and transformation
+- Implement IsRangeRule() for pattern detection
+- Handle edge cases and invalid syntax
 
 ### Step 4 — Validate & QA
-- Run all range casing transformation tests
-- Test integration with FSM and tokenizer
-- Validate edge case handling and error conditions
-- Ensure backward compatibility with single-word casing
+- Run all range transformation tests
+- Verify boundary handling works correctly
+- Test integration with FSM and tokenization
 - If verification passes, output: **"✅ Rule Handler — Casing (Range) (TASK-007) self-verified. Ready for review."**
 ```

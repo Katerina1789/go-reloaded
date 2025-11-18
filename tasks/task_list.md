@@ -17,10 +17,10 @@ This document contains a complete list of implementation tasks for building the 
 
 ### TASK-002: Tokenization Engine
 
-- **Functionality**: Split text into tokens (words, punctuation, markers)
-- **Test First**: `"Hello, world!"` → `["Hello", ",", "world", "!"]`
-- **Implementation Goal**: Create tokenizer that preserves punctuation and rule markers
-- **Validation**: Token list matches expected structure
+- **Functionality**: Split text into tokens, combining range patterns
+- **Test First**: `"hello (up, 2)"` → `["hello", "(up, 2)"]`
+- **Implementation Goal**: Create tokenizer that combines range patterns like `(up, 2)` into single tokens
+- **Validation**: Range patterns properly combined, other tokens separated
 
 ---
 
@@ -28,7 +28,7 @@ This document contains a complete list of implementation tasks for building the 
 
 - **Functionality**: Manage state transitions and rule dispatching
 - **Test First**: `"hello (up)"` routes to uppercase handler
-- **Implementation Goal**: Implement FSM with states like `Normal`, `QuoteOpen`, `RulePending`
+- **Implementation Goal**: Implement FSM with states `Normal` and `QuoteOpen`
 - **Validation**: FSM transitions and rule routing work correctly
 
 ---
@@ -87,12 +87,12 @@ This document contains a complete list of implementation tasks for building the 
 
 ---
 
-### TASK-010: Rule Handler — Article Correction
+### TASK-010: Post-Processing Pipeline
 
-- **Functionality**: Replace `a` with `an` before vowels or 'h'
-- **Test First**: `"a amazing"` → `"an amazing"`
-- **Implementation Goal**: Implement vowel detection and article replacement
-- **Validation**: Unit tests for edge cases
+- **Functionality**: Apply punctuation, quote, and article fixes after FSM processing
+- **Test First**: `"hello ,world ' text '"` → `"hello, world 'text'"`
+- **Implementation Goal**: Implement `FixPunctuation()`, `FixQuotes()`, `FixArticles()` functions
+- **Validation**: Unit tests for each post-processing function
 
 ---
 
@@ -117,8 +117,8 @@ This document contains a complete list of implementation tasks for building the 
 ### TASK-013: Audit Mode
 
 - **Functionality**: Automated validation system with comprehensive test suite and detailed reporting
-- **Test First**: 20+ test cases covering all rules and edge cases with pass/fail checklist
-- **Implementation Goal**: Self-contained audit mode with --audit flag, detailed reports, CI/CD integration
+- **Test First**: 12 test cases covering all rules and edge cases with pass/fail checklist
+- **Implementation Goal**: Self-contained audit mode with --audit flag, detailed reports
 - **Validation**: Complete rule coverage, <5s execution time, actionable failure reports
 
 ---

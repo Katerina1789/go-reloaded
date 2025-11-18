@@ -5,44 +5,36 @@
 - **Size**: S
 - **Confidence**: High
 - **Hard Dependencies**: TASK-003
-- **Soft Dependencies**: TASK-004 (similar pattern)
-- **Related Architecture**: Rule handlers, number conversion
+- **Soft Dependencies**: TASK-004
+- **Related Architecture**: Number conversion, rule handlers
 
 ## Mission Profile
-- Implement binary to decimal conversion rule handler
-- Parse binary strings and convert to decimal representation
-- Handle invalid binary inputs gracefully with error reporting
-- Integrate with FSM controller for rule dispatching
+Convert previous word from binary to decimal when `(bin)` marker is encountered. Handle valid binary inputs (0s and 1s only) and gracefully ignore invalid ones.
 
 ## Deliverables
-- `internal/rules/binary.go` with binary conversion logic
-- Binary validation and error handling
-- Integration with FSM rule routing system
-- Comprehensive unit tests for valid and invalid inputs
-- Performance optimization for large binary numbers
+- `internal/bin.go` with binary conversion logic
+- `ApplyBin()` function that returns bool for success/failure
+- Validation for valid binary characters (0, 1 only)
+- Integration with FSM controller
+- Unit tests for valid/invalid binary inputs
 
 ## Acceptance Criteria
-- ✅ `"101 (bin)"` correctly converts to `"5"`
-- ✅ `"1010 (bin)"` correctly converts to `"10"`
-- ✅ Invalid binary strings (containing 2-9, letters) are handled gracefully
-- ✅ Empty or malformed binary inputs return appropriate errors
-- ✅ Integration with FSM controller works seamlessly
+- ✅ `"101 (bin)"` → `"5"`
+- ✅ `"1010 (bin)"` → `"10"`
+- ✅ `"22 (bin)"` → `"22 (bin)"` (invalid, unchanged)
+- ✅ Only accepts 0 and 1 characters
+- ✅ Returns bool indicating conversion success
 
 ## Verification Plan
-- `unit`: Test binary parsing with valid inputs (0, 1, 101, 1111, etc.)
-- `error`: Test invalid inputs and error handling
-- `integration`: Test with FSM controller and token processing
-- `performance`: Verify handling of large binary numbers
+- `unit`: Test valid binary conversions, invalid input handling
+- `integration`: Test with FSM controller
+- `edge`: Test empty strings, non-binary characters
+- `performance`: Verify efficient parsing
 
 ## References
-- `docs/architecture.md`: Rule handler interface and FSM integration
-- `audit/golden_test_set.md`: Binary conversion test cases
-- Go `strconv` package documentation for number conversion
-
-## Notes for Agent
-- Use Go's built-in `strconv.ParseInt` with base 2 for conversion
-- Implement consistent error handling pattern with other rule handlers
-- Consider edge cases like leading zeros and maximum integer size
+- Go `strconv` package for binary parsing
+- `docs/analysis.md`: Binary conversion rule specification
+- Project requirements for number conversion
 
 ## PROMPT — FULL 4-STEP FLOW
 
@@ -50,27 +42,23 @@
 You are executing **Rule Handler — Binary (TASK-005)** for go-reloaded.
 
 ### Step 1 — Analyze & Confirm
-- Review FSM controller interface from TASK-003
-- Study hexadecimal handler pattern from TASK-004 for consistency
-- Examine `audit/golden_test_set.md` for binary conversion test cases
+- Review binary conversion requirements and validation rules
+- Understand integration with FSM controller
 - WAIT for user confirmation before proceeding
 
 ### Step 2 — Write the Tests (TDD)
-- Create unit tests for valid binary conversions
-- Test error handling for invalid binary strings
-- Test integration with FSM rule routing
-- Prepare edge case tests (empty strings, large numbers)
+- Test valid binary conversions
+- Test invalid input handling (non-0/1 characters)
+- Test edge cases and boundary conditions
 
 ### Step 3 — Implement the Code
-- Build binary conversion handler using Go's strconv package
-- Implement error handling and validation
-- Integrate with FSM controller interface
-- Add logging and debugging support
+- Build ApplyBin() function with validation
+- Implement binary parsing using Go standard library
+- Ensure proper error handling
 
 ### Step 4 — Validate & QA
 - Run all binary conversion tests
-- Test integration with FSM and tokenizer
-- Validate error handling and edge cases
-- Check performance with large binary inputs
+- Verify invalid inputs remain unchanged
+- Test integration with FSM
 - If verification passes, output: **"✅ Rule Handler — Binary (TASK-005) self-verified. Ready for review."**
 ```

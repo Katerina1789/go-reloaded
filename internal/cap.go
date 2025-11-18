@@ -1,3 +1,5 @@
+// Package internal provides capitalization transformation for go-reloaded.
+// Capitalizes the first letter of previous word(s) when (cap) or (cap, n) rules are encountered.
 package internal
 
 import "strings" // For string case conversion

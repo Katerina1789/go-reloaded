@@ -80,12 +80,12 @@ Follow this 4-step execution model for each assigned task:
 |------|-------------|
 | [docs/analysis.md](docs/analysis.md) | Problem analysis and architecture justification |
 | [docs/architecture.md](docs/architecture.md) | FSM design and implementation guide |
-| [docs/how_to_work.md](docs/how_to_work.md) | Development workflow and TDD process |
+| [docs/references.md](docs/references.md) | Essential documentation and references |
 | [docs/ai_usage.md](docs/ai_usage.md) | AI transparency documentation |
 | [docs/reproducibility.md](docs/reproducibility.md) | Peer implementation guide |
 | [internal/fsm.go](internal/fsm.go) | FSM controller and state management |
 | [audit/golden_test_set.md](audit/golden_test_set.md) | Expected outputs and test cases |
-| [audit/audit_guide.md](audit/audit_guide.md) | Audit checklist and validation |
+| [audit/audit_procedure.md](audit/audit_procedure.md) | Audit procedure and validation |
 | [tasks/task_list.md](tasks/task_list.md) | Agile task breakdown |
 
 ---

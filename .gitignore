@@ -8,19 +8,31 @@
 # Test binary, built with `go test -c`
 *.test
 
-# Output of the go coverage tool, specifically when used with LiteIDE
+# Go coverage reports
 *.out
 
-# Go workspace file
+# Go workspace files
 go.work
 
-# Temporary files
-temp_*.txt
+# Build artifacts
+bin/
+build/
+dist/
+
+# Project output files
 result.txt
 output.txt
+test_output.txt
 
 # IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db

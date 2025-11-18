@@ -1,3 +1,6 @@
+// Package internal implements the Finite State Machine controller for go-reloaded.
+// Manages state transitions between Normal and QuoteOpen states, routes transformation
+// rules to appropriate handlers, and coordinates post-processing.
 package internal
 
 import "strings" // For joining result words

@@ -4,45 +4,37 @@
 - **Owner**: Backend Developer
 - **Size**: M
 - **Confidence**: Medium
-- **Hard Dependencies**: TASK-003
-- **Soft Dependencies**: TASK-008 (punctuation interaction)
-- **Related Architecture**: Rule handlers, state management
+- **Hard Dependencies**: TASK-003 (FSM states)
+- **Soft Dependencies**: TASK-010 (post-processing)
+- **Related Architecture**: State management, post-processing
 
 ## Mission Profile
-- Implement quote formatting and spacing normalization
-- Detect quote boundaries and manage quote state in FSM
-- Remove extra spaces inside quoted phrases
-- Handle both single and double quote scenarios
+Format quoted phrases by detecting quote boundaries in FSM and fixing spacing in post-processing. Handle both single-word and multi-word quotes with proper spacing removal.
 
 ## Deliverables
-- `internal/rules/quotes.go` with quote formatting logic
-- Quote state management integration with FSM controller
-- Space trimming logic for quoted content
-- Comprehensive unit tests for quote scenarios
-- Support for nested and adjacent quote handling
+- Quote state tracking in FSM controller
+- `FixQuotes()` function in `internal/punctuation.go`
+- Proper spacing removal around quoted content
+- Unit tests for single and multi-word quotes
+- Integration with FSM state transitions
 
 ## Acceptance Criteria
-- ✅ `"' awesome '"` correctly formats to `"'awesome'"`
-- ✅ `'" hello world "'"` correctly formats to `"'hello world'"`
-- ✅ Multiple words in quotes maintain internal spacing
-- ✅ Quote state tracking prevents malformed quote handling
-- ✅ Integration with punctuation rules works correctly
+- ✅ `"' awesome '"` → `"'awesome'"`
+- ✅ `"' I am the most well-known '"` → `"'I am the most well-known'"`
+- ✅ Quote state tracking: Normal ↔ QuoteOpen
+- ✅ Handles nested quotes correctly
+- ✅ Preserves quote content transformations
 
 ## Verification Plan
-- `unit`: Test single and multi-word quote formatting
-- `state`: Test quote state management and boundary detection
-- `integration`: Test with FSM controller and punctuation rules
-- `nested`: Test complex quote scenarios and edge cases
+- `unit`: Test quote spacing removal, state transitions
+- `integration`: Test quotes with transformations inside
+- `edge`: Test nested quotes, malformed quotes
+- `performance`: Verify efficient quote processing
 
 ## References
-- `docs/architecture.md`: FSM state management and rule handler interface
-- `audit/golden_test_set.md`: Quote formatting test cases
-- Typography conventions for quote spacing and formatting
-
-## Notes for Agent
-- Implement quote state tracking in FSM controller integration
-- Consider interaction with punctuation rules for proper formatting
-- Handle edge cases like unmatched quotes and nested scenarios
+- `docs/analysis.md`: Quote formatting specifications
+- FSM state requirements from TASK-003
+- Post-processing pipeline integration
 
 ## PROMPT — FULL 4-STEP FLOW
 
@@ -50,27 +42,23 @@
 You are executing **Rule Handler — Quotes (TASK-009)** for go-reloaded.
 
 ### Step 1 — Analyze & Confirm
-- Review FSM controller state management from TASK-003
-- Study punctuation handler from TASK-008 for interaction patterns
-- Examine `audit/golden_test_set.md` for quote formatting test cases
+- Review quote formatting rules and FSM state requirements
+- Understand quote boundary detection and spacing removal
 - WAIT for user confirmation before proceeding
 
 ### Step 2 — Write the Tests (TDD)
-- Create unit tests for quote boundary detection and formatting
-- Test quote state management and transitions
-- Test integration with FSM controller and other rules
-- Prepare edge case tests (unmatched quotes, nested scenarios)
+- Test quote state transitions in FSM
+- Test spacing removal for single and multi-word quotes
+- Test quotes with transformations inside
 
 ### Step 3 — Implement the Code
-- Build quote detection and formatting logic
-- Implement quote state tracking with FSM integration
-- Add space trimming and normalization for quoted content
-- Handle interaction with punctuation and other rules
+- Implement quote state tracking in FSM
+- Build FixQuotes() function for post-processing
+- Handle nested and malformed quotes
 
 ### Step 4 — Validate & QA
 - Run all quote formatting tests
-- Test integration with FSM and other rule handlers
-- Validate state management and edge cases
-- Check typography compliance and formatting consistency
+- Verify FSM state transitions work correctly
+- Test integration with transformations
 - If verification passes, output: **"✅ Rule Handler — Quotes (TASK-009) self-verified. Ready for review."**
 ```

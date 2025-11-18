@@ -2,47 +2,39 @@
 
 - **ID**: TASK-008
 - **Owner**: Backend Developer
-- **Size**: M
-- **Confidence**: Medium
+- **Size**: S
+- **Confidence**: High
 - **Hard Dependencies**: TASK-003
-- **Soft Dependencies**: None
-- **Related Architecture**: Rule handlers, text formatting
+- **Soft Dependencies**: TASK-010 (post-processing)
+- **Related Architecture**: Post-processing, text formatting
 
 ## Mission Profile
-- Implement punctuation normalization and spacing rules
-- Attach punctuation marks to previous words without spaces
-- Add appropriate spacing after punctuation marks
-- Handle various punctuation types: periods, commas, semicolons, colons, exclamation, question marks
+Normalize punctuation spacing as part of post-processing pipeline. Attach punctuation to preceding word and add space after, while preserving grouped punctuation like `...` and `!!`.
 
 ## Deliverables
-- `internal/rules/punctuation.go` with punctuation formatting logic
-- Punctuation detection and classification system
-- Spacing normalization for before/after punctuation
-- Comprehensive unit tests for all punctuation scenarios
-- Integration with FSM controller for automatic application
+- Punctuation normalization logic in `internal/punctuation.go`
+- `FixPunctuation()` function for post-processing
+- Handling for all punctuation types: `. , ! ? : ;`
+- Special handling for grouped punctuation
+- Unit tests for punctuation spacing rules
 
 ## Acceptance Criteria
-- ✅ `"hello ,world"` correctly formats to `"hello, world"`
-- ✅ `"What ?Really !"` correctly formats to `"What? Really!"`
-- ✅ `"Yes ;no :maybe"` correctly formats to `"Yes; no: maybe"`
-- ✅ Multiple consecutive punctuation marks are handled properly
-- ✅ Punctuation at sentence boundaries works correctly
+- ✅ `"hello ,world"` → `"hello, world"`
+- ✅ `"text . More"` → `"text. More"`
+- ✅ `"thinking ... you"` → `"thinking... you"` (grouped preserved)
+- ✅ `"BAMM !!"` → `"BAMM!!"` (grouped preserved)
+- ✅ Handles all punctuation types consistently
 
 ## Verification Plan
-- `unit`: Test each punctuation type with various spacing scenarios
-- `multiple`: Test consecutive and mixed punctuation marks
-- `integration`: Test with FSM controller and token processing
-- `boundary`: Test punctuation at start/end of text
+- `unit`: Test individual punctuation types and spacing
+- `integration`: Test grouped punctuation preservation
+- `edge`: Test multiple spaces, mixed punctuation
+- `performance`: Verify efficient text processing
 
 ## References
-- `docs/architecture.md`: Rule handler interface and token processing
-- `audit/golden_test_set.md`: Punctuation formatting test cases
-- English punctuation spacing conventions and style guides
-
-## Notes for Agent
-- Define punctuation character sets for consistent detection
-- Implement spacing rules that work with tokenizer output
-- Consider interaction with quote handling for proper formatting
+- `docs/analysis.md`: Punctuation rule specifications
+- Go `strings` and `regexp` packages
+- Post-processing pipeline requirements
 
 ## PROMPT — FULL 4-STEP FLOW
 
@@ -50,27 +42,23 @@
 You are executing **Rule Handler — Punctuation (TASK-008)** for go-reloaded.
 
 ### Step 1 — Analyze & Confirm
-- Review tokenizer output from TASK-002 for punctuation handling
-- Study FSM controller interface from TASK-003
-- Examine `audit/golden_test_set.md` for punctuation formatting test cases
+- Review punctuation spacing rules and grouped handling
+- Understand post-processing pipeline integration
 - WAIT for user confirmation before proceeding
 
 ### Step 2 — Write the Tests (TDD)
-- Create unit tests for each punctuation type and spacing rule
-- Test multiple consecutive punctuation scenarios
-- Test integration with FSM rule processing
-- Prepare edge case tests (start/end boundaries, mixed punctuation)
+- Test individual punctuation spacing normalization
+- Test grouped punctuation preservation
+- Test edge cases and mixed punctuation
 
 ### Step 3 — Implement the Code
-- Build punctuation detection and classification system
-- Implement spacing normalization logic
-- Integrate with FSM controller for automatic processing
-- Add support for various punctuation mark types
+- Build FixPunctuation() function
+- Implement spacing rules for all punctuation types
+- Handle grouped punctuation special cases
 
 ### Step 4 — Validate & QA
-- Run all punctuation formatting tests
-- Test integration with FSM and tokenizer
-- Validate edge cases and boundary conditions
-- Check consistency with English punctuation conventions
+- Run all punctuation tests
+- Verify grouped punctuation preserved correctly
+- Test integration with post-processing pipeline
 - If verification passes, output: **"✅ Rule Handler — Punctuation (TASK-008) self-verified. Ready for review."**
 ```

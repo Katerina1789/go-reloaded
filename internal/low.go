@@ -1,3 +1,5 @@
+// Package internal provides lowercase transformation for go-reloaded.
+// Converts the previous word(s) to lowercase when (low) or (low, n) rules are encountered.
 package internal
 
 import "strings" // For string case conversion

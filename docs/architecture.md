@@ -109,15 +109,15 @@ Each rule is implemented as a handler function that:
 
 ## Testing Framework
 
-### Integration Testing (TASK-011)
+### Integration Testing
 - Golden test framework with byte-for-byte output validation
-- 5 test cases of increasing complexity (100-5000 words)
+- 12 comprehensive test cases covering all transformation rules
 - Performance benchmarks: <100ms for 1000-word paragraphs
 - Memory profiling and leak detection
 
-### Audit Mode (TASK-013)
+### Audit Mode
 - Automated validation system with `--audit` flag
-- 20+ comprehensive test cases covering all rules
+- 12 comprehensive test cases covering all rules
 - Detailed pass/fail reporting with failure diagnostics
 - CI/CD integration for regression testing
 - Performance requirement: <5 seconds full suite execution

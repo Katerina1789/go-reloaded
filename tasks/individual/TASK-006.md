@@ -5,44 +5,35 @@
 - **Size**: S
 - **Confidence**: High
 - **Hard Dependencies**: TASK-003
-- **Soft Dependencies**: None
-- **Related Architecture**: Rule handlers, text transformation
+- **Soft Dependencies**: TASK-004, TASK-005
+- **Related Architecture**: Text transformation, rule handlers
 
 ## Mission Profile
-- Implement single-word casing transformation rules
-- Handle uppercase `(up)`, lowercase `(low)`, and capitalize `(cap)` operations
-- Apply transformations to the previous word in the token stream
-- Integrate with FSM controller for rule dispatching
+Transform previous word casing using `(up)`, `(low)`, and `(cap)` markers. Implement single-word transformations that modify the immediately preceding word.
 
 ## Deliverables
-- `internal/rules/casing.go` with single-word casing logic
-- Support for `(up)`, `(low)`, and `(cap)` rule markers
-- Integration with FSM rule routing system
-- Comprehensive unit tests for all casing operations
-- Unicode-aware text transformation handling
+- `internal/up.go`, `internal/low.go`, `internal/cap.go` with casing functions
+- `ApplyUp()`, `ApplyLow()`, `ApplyCap()` functions
+- Integration with FSM controller for single-word transformations
+- Unit tests for each casing rule
 
 ## Acceptance Criteria
-- ✅ `"hello (up)"` correctly transforms to `"HELLO"`
-- ✅ `"WORLD (low)"` correctly transforms to `"world"`
-- ✅ `"example (cap)"` correctly transforms to `"Example"`
-- ✅ Handles Unicode characters and special cases properly
-- ✅ Integration with FSM controller works seamlessly
+- ✅ `"hello (up)"` → `"HELLO"`
+- ✅ `"WORLD (low)"` → `"world"`
+- ✅ `"bridge (cap)"` → `"Bridge"`
+- ✅ Handles empty strings and edge cases
+- ✅ Preserves non-alphabetic characters
 
 ## Verification Plan
-- `unit`: Test each casing rule with various input strings
-- `unicode`: Test with non-ASCII characters and special cases
-- `integration`: Test with FSM controller and token processing
-- `edge`: Test with empty strings and single characters
+- `unit`: Test each casing transformation individually
+- `integration`: Test with FSM controller
+- `edge`: Test empty strings, numbers, punctuation
+- `performance`: Verify efficient string operations
 
 ## References
-- `docs/architecture.md`: Rule handler interface and FSM integration
-- `audit/golden_test_set.md`: Casing transformation test cases
-- Go `strings` package documentation for case conversion
-
-## Notes for Agent
-- Use Go's built-in `strings.ToUpper`, `strings.ToLower`, `strings.Title` functions
-- Implement consistent interface pattern with other rule handlers
-- Consider Unicode normalization for international text
+- Go `strings` package for case transformations
+- `docs/analysis.md`: Casing rule specifications
+- Project requirements for text transformation
 
 ## PROMPT — FULL 4-STEP FLOW
 
@@ -50,27 +41,23 @@
 You are executing **Rule Handler — Casing (Single) (TASK-006)** for go-reloaded.
 
 ### Step 1 — Analyze & Confirm
-- Review FSM controller interface from TASK-003
-- Study rule handler patterns from previous tasks for consistency
-- Examine `audit/golden_test_set.md` for casing transformation test cases
+- Review casing transformation requirements for up/low/cap
+- Understand single-word transformation logic
 - WAIT for user confirmation before proceeding
 
 ### Step 2 — Write the Tests (TDD)
-- Create unit tests for each casing rule (up, low, cap)
-- Test Unicode character handling
-- Test integration with FSM rule routing
-- Prepare edge case tests (empty strings, single chars)
+- Test uppercase, lowercase, capitalize transformations
+- Test edge cases: empty strings, mixed content
+- Test preservation of non-alphabetic characters
 
 ### Step 3 — Implement the Code
-- Build casing transformation handlers using Go's strings package
-- Implement rule detection and application logic
-- Integrate with FSM controller interface
-- Add support for Unicode text processing
+- Build ApplyUp(), ApplyLow(), ApplyCap() functions
+- Implement using Go strings package
+- Ensure proper handling of edge cases
 
 ### Step 4 — Validate & QA
 - Run all casing transformation tests
-- Test integration with FSM and tokenizer
-- Validate Unicode handling and edge cases
-- Check consistency with other rule handlers
+- Verify each rule works independently
+- Test integration with FSM
 - If verification passes, output: **"✅ Rule Handler — Casing (Single) (TASK-006) self-verified. Ready for review."**
 ```

@@ -1,3 +1,5 @@
+// Package internal provides range rule parsing and handling for go-reloaded.
+// Detects and processes complex rules like (up, 2), (low, 3), (cap, 4) that affect multiple words.
 package internal
 
 import (

@@ -1,4 +1,4 @@
-# Rule Handler — Article Correction
+# Post-Processing Pipeline
 
 - **ID**: TASK-010
 - **Owner**: Backend Developer
@@ -9,9 +9,7 @@
 - **Related Architecture**: Rule handlers, linguistic transformations
 
 ## Mission Profile
-Implement the article correction rule that automatically replaces "a" with "an" when followed by words starting with vowels (a, e, i, o, u) or the letter 'h'. This rule enhances grammatical correctness in the transformed text and must handle case-insensitive matching while preserving the original case of the article.
-
-The handler must integrate seamlessly with the FSM controller and operate on the token stream, looking ahead to the next word to determine if article replacement is necessary.
+Implement the post-processing pipeline that applies punctuation spacing, quote formatting, and article correction after FSM processing. This includes FixPunctuation(), FixQuotes(), and FixArticles() functions that clean up the text output from the FSM controller.
 
 ## Deliverables
 - `internal/rules/article.go` implementing article correction logic with vowel/h detection
