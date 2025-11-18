@@ -3,7 +3,7 @@
 package internal
 
 import (
-	"regexp" // For pattern matching range rules
+	"regexp"  // For pattern matching range rules
 	"strconv" // For converting string numbers to integers
 )
 
@@ -18,8 +18,8 @@ func ApplyRangeRule(result []string, word string) {
 	// Extract action and count from pattern like "(up, 2)"
 	re := regexp.MustCompile(`\((up|low|cap),\s*(\d+)\)`)
 	matches := re.FindStringSubmatch(word) // Get captured groups
-	if len(matches) == 3 {                // Should have full match + 2 groups
-		action := matches[1]              // "up", "low", or "cap"
+	if len(matches) == 3 {                 // Should have full match + 2 groups
+		action := matches[1]                 // "up", "low", or "cap"
 		count, _ := strconv.Atoi(matches[2]) // Convert number string to int
 		// Apply the appropriate transformation
 		switch action {

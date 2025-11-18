@@ -12,15 +12,15 @@ func FixPunctuation(text string) string {
 	// Remove spaces before punctuation: "word ," → "word,"
 	re := regexp.MustCompile(`\s+([.,!?:;])`)
 	text = re.ReplaceAllString(text, "$1")
-	
+
 	// Add space after punctuation if missing: "word,text" → "word, text"
 	re = regexp.MustCompile(`([.,!?:;])([^\s.,!?:;])`)
 	text = re.ReplaceAllString(text, "$1 $2")
-	
+
 	// Remove spaces before grouped punctuation: "word ..." → "word..."
 	re = regexp.MustCompile(`\s+(\.{2,}|!{2,}|\?{2,}|[!?]{2,})`)
 	text = re.ReplaceAllString(text, "$1")
-	
+
 	return text
 }
 
@@ -43,7 +43,7 @@ func FixArticles(text string) string {
 		}
 		return match // Keep original if parsing fails
 	})
-	
+
 	// Fix uppercase "A" before vowels/h: "A amazing" → "An amazing"
 	re = regexp.MustCompile(`\bA\s+([aeiouAEIOUhH])`)
 	text = re.ReplaceAllStringFunc(text, func(match string) string {
@@ -53,6 +53,6 @@ func FixArticles(text string) string {
 		}
 		return match // Keep original if parsing fails
 	})
-	
+
 	return text
 }
