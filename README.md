@@ -30,8 +30,15 @@ go mod tidy
 # Transform text file
 go run . input.txt output.txt
 
-# Run test suite
+# Run audit mode
 go run . sample.txt result.txt --audit
+
+# Using Makefile
+make build    # Build binary
+make test     # Run unit tests
+make audit    # Run audit mode
+make clean    # Clean artifacts
+make help     # Show all commands
 ```
 
 ## Examples
@@ -74,18 +81,38 @@ go-reloaded/
 │   ├── cap.go         # Capitalization
 │   ├── range.go       # Range operations
 │   └── punctuation.go # Post-processing
+├── testfiles/         # Unit tests
+│   ├── fsm_test.go
+│   ├── hex_test.go
+│   ├── bin_test.go
+│   ├── up_test.go
+│   ├── low_test.go
+│   ├── cap_test.go
+│   ├── range_test.go
+│   └── punctuation_test.go
 ├── docs/              # Documentation
 ├── audit/             # Test cases & validation
 ├── tasks/             # Task breakdown
+├── Makefile           # Build automation
 ├── agents.md          # AI agent instructions
 └── main.go            # CLI entry point
 ```
 
 ## Testing
 
-The project includes comprehensive testing with 12 validation scenarios:
+The project includes comprehensive testing:
 
+**Unit Tests** (testfiles/)
 ```bash
+make test
+# or
+go test ./testfiles/... -v
+```
+
+**Audit Mode** (12 integration tests)
+```bash
+make audit
+# or
 go run . sample.txt result.txt --audit
 
 ✅ Hex conversion: PASS

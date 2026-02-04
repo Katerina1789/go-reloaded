@@ -94,6 +94,8 @@ Each rule is implemented as a handler function that:
 - `internal/cap.go`: Capitalization command
 - `internal/range.go`: Range transformation commands
 - `internal/punctuation.go`: Punctuation, quotes, and articles processing
+- `testfiles/`: Unit tests for all internal functions
+- `Makefile`: Build automation and test commands
 
 ---
 
@@ -109,6 +111,12 @@ Each rule is implemented as a handler function that:
 
 ## Testing Framework
 
+### Unit Testing
+- Comprehensive test coverage in `testfiles/` directory
+- Individual test files for each module (hex_test.go, bin_test.go, etc.)
+- Table-driven tests for edge cases and validation
+- Run with: `make test` or `go test ./testfiles/... -v`
+
 ### Integration Testing
 - Golden test framework with byte-for-byte output validation
 - 12 comprehensive test cases covering all transformation rules
@@ -121,6 +129,7 @@ Each rule is implemented as a handler function that:
 - Detailed pass/fail reporting with failure diagnostics
 - CI/CD integration for regression testing
 - Performance requirement: <5 seconds full suite execution
+- Run with: `make audit` or `go run . sample.txt result.txt --audit`
 
 ## Next Steps
 
