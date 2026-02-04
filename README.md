@@ -28,10 +28,10 @@ go mod tidy
 
 ```bash
 # Transform text file
-go run . input.txt output.txt
+go run cmd/main.go utput.txt
 
 # Run audit mode
-go run . sample.txt result.txt --audit
+go run cmd/main.go result.txt --audit
 
 # Using Makefile
 make build    # Build binary
@@ -113,7 +113,7 @@ go test ./testfiles/... -v
 ```bash
 make audit
 # or
-go run . sample.txt result.txt --audit
+go run cmd/main.go result.txt --audit
 
 ✅ Hex conversion: PASS
 ✅ Binary conversion: PASS

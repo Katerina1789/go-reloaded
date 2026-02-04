@@ -25,7 +25,7 @@ If I make you BREAKFAST IN BED (low, 3) just say thank you instead of: how (cap)
 
 **Command:**
 ```bash
-go run . sample.txt result.txt
+go run cmd/main.go result.txt
 ```
 
 **Expected Output:**
@@ -46,7 +46,7 @@ I have to pack 101 (bin) outfits. Packed 1a (hex) just to be sure
 
 **Command:**
 ```bash
-go run . sample.txt result.txt
+go run cmd/main.go result.txt
 ```
 
 **Expected Output:**
@@ -67,7 +67,7 @@ Don not be sad ,because sad backwards is das . And das not good
 
 **Command:**
 ```bash
-go run . sample.txt result.txt
+go run cmd/main.go result.txt
 ```
 
 **Expected Output:**
@@ -88,7 +88,7 @@ harold wilson (cap, 2) : ' I am a optimist ,but a optimist who carries a raincoa
 
 **Command:**
 ```bash
-go run . sample.txt result.txt
+go run cmd/main.go result.txt
 ```
 
 **Expected Output:**

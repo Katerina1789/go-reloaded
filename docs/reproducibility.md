@@ -69,7 +69,7 @@ func (fsm *FSM) GetOutput() string
 4. Implement punctuation.go for post-processing (quotes, punctuation, articles)
 5. Implement fsm.go controller with tokenization logic
 6. Create main.go with CLI handling and audit mode
-7. Test with `go run . sample.txt result.txt --audit`
+7. Test with `go run cmd/main.go sample.txt result.txt --audit`
 
 #### 5. Key Implementation Details
 - **Tokenization**: Handle range patterns like `(up, 2)` as single tokens

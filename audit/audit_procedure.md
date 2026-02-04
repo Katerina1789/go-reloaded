@@ -82,7 +82,7 @@ These show useful repo hygiene (docs, CI, pages) and analysis artifacts:
 ### Automated Testing
 ```bash
 # Run all 12 test cases automatically
-go run . sample.txt result.txt --audit
+go run cmd/main.go sample.txt result.txt --audit
 ```
 
 ### Key Validation Points

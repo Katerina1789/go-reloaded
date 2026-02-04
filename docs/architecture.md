@@ -129,7 +129,7 @@ Each rule is implemented as a handler function that:
 - Detailed pass/fail reporting with failure diagnostics
 - CI/CD integration for regression testing
 - Performance requirement: <5 seconds full suite execution
-- Run with: `make audit` or `go run . sample.txt result.txt --audit`
+- Run with: `make audit` or `go run cmd/main.go sample.txt result.txt --audit`
 
 ## Next Steps
 
